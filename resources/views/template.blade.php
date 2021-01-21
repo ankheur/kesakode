@@ -13,20 +13,23 @@
 <div id="app">
     <header id="header">
         <div class="container mx-auto flex flex-row items-center border-b-2 border-gray-200 py-4 mb-6">
-            <div class="md:w-1/4">
-                <a href="/" class="font-bold text-gray-700 hover:text-gray-700 text-xl">Kesakode</a>
+            <div class="md:w-1/5">
+                <a href="{{ route('home') }}" class="font-bold text-gray-700 hover:text-gray-700 text-xl">Kesakode</a>
             </div>
 
-            <form class="md:w-1/2" action="/search/results">
-                <input class="w-full p-2 border-2 rounded-lg bg-white shadow-md text-gray-700 font-normal focus:outline-none focus:font-semibold" type="text" name="q" placeholder="Search the docs">
+            <form class="md:w-2/3" action="/search/results">
+                <input class="w-full p-2 border-2 rounded-lg bg-white shadow-md text-gray-700 font-normal focus:outline-none focus:font-semibold" type="text" name="recherche" placeholder="Rechercher">
             </form>
 
-            <div class="flex flex-row items-center">
-                <a class="w-5 mr-4" href="https://statamic.com/discord">
-                    
+            <div class="md:w-2/6 flex flex-row items-center justify-around">
+                <a class="p-4" href="{{ route('roadmap') }}">
+                    Roadmap
                 </a>
-                <a class="w-5" href="https://github.com/doublethreedigital/docs-starter-kit">
-                    
+                <a class="p-4" href="{{ route('debuter') }}">
+                   Premiers pas 
+                </a>
+                <a class="p-4" href="{{ route('kesakoi') }}">
+                   Kesakoi ?
                 </a>
             </div>
         </div>
@@ -55,15 +58,11 @@
                     </ul>
                 </div>
             </div>
-
-            <div class="hidden md:flex flex-col text-xs my-4 p-2 text-gray-700">
-                <a class="mb-1" href="https://statamic.com">Powered by Statamic</a>
-            </div>
         </div>
 
         <div class="md:w-1/2 p-2 md:p-0">
             <article id="" class="md:w-full">
-                
+                @yield('content')
             </article>
         </div>
     </main>
