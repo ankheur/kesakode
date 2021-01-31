@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\TopicController;
+use App\Http\Controllers\CategoryController;
+
+use App\Models\Topic;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.home');
-});
+    $topics = Topic::all();
+    return view('pages.home', ['topics' => $topics]);
+})->name('home');
 
 Route::get('/roadmap', function () {
     return view('pages.roadmap');
@@ -27,8 +33,7 @@ Route::get('/kesakoi', function () {
     return view('pages.kesakoi');
 })->name('kesakoi');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
+
+Route::get('/{category:slug}/{topic:slug}', [TopicController::class, 'show']);
+Route::get('/{category:slug}', [CategoryController::class, 'show']);
